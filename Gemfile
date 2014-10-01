@@ -20,3 +20,6 @@ group :test do
   gem 'poltergeist', require: 'capybara/poltergeist'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
