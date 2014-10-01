@@ -17,7 +17,7 @@ Server:
 ## TODO
 
 - [x] pagination
-- [ ] create a question
+- [x] create a question
 - [ ] edit a question
 - [ ] delete a question
 - [ ] search questions
