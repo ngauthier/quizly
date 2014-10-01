@@ -8,6 +8,7 @@
   <% question.distractors.each do |distractor| %>
     <p><%= distractor %></p>
   <% end %>
-  <p><%= link_to "Edit", edit_question_path(question) %></p>
+  <p><%= link_to "Edit",   edit_question_path(question) %></p>
+  <p><%= link_to "Delete", question_path(question), method: :delete %></p>
 <% end %>
 <%= paginate @questions %>

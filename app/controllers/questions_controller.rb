@@ -30,6 +30,11 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    Question.destroy params[:id]
+    redirect_to questions_path
+  end
+
   private
   def question_params
     params.require(:question).permit(:question, :answer, :distractors)

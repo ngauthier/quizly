@@ -94,4 +94,19 @@ class QuestionsTest < ActionDispatch::IntegrationTest
 
     assert_see "Answer can't be blank"
   end
+
+  test "delete a question" do
+    Question.create!(
+      question: "What is 1+1?",
+      answer: "3",
+      distractors: ["4", "5"]
+    )
+
+    visit "/"
+    assert_see "What is 1+1?"
+    click_link "Delete"
+    refute_see "What is 1+1?"
+    assert_see "Questions"
+    assert_equal 0, Question.count
+  end
 end
