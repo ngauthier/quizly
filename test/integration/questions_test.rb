@@ -49,4 +49,13 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     assert_equal "Blue",                     question.answer
     assert_equal ["Red", "Green", "Purple"], question.distractors
   end
+
+  test "try to create a bad question" do
+    visit "/"
+    click_link "Create a question"
+    click_button "Create Question"
+    assert_see "Question can't be blank"
+    assert_see "Answer can't be blank"
+    assert_see "Distractors can't be empty"
+  end
 end

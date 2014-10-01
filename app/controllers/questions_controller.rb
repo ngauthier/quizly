@@ -8,7 +8,11 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    Question.create!(params.require(:question).permit(:question, :answer, :distractors))
-    redirect_to questions_path
+    @question = Question.new(params.require(:question).permit(:question, :answer, :distractors))
+    if @question.save
+      redirect_to questions_path
+    else
+      render :new
+    end
   end
 end
