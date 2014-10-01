@@ -7,13 +7,26 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<% @questions.each do |question| %>
-  <h2><%= question.question %></h2>
-  <p><strong><%= question.answer %></strong></p>
-  <% question.distractors.each do |distractor| %>
-    <p><%= distractor %></p>
-  <% end %>
-  <p><%= link_to "Edit",   edit_question_path(question) %></p>
-  <p><%= link_to "Delete", question_path(question), method: :delete %></p>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+      <th>Distractors</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.question %></td>
+        <td><%= question.answer %></td>
+        <td><%= question.distractors.join(", ") %></td>
+        <td><%= link_to "Edit",   edit_question_path(question) %></td>
+        <td><%= link_to "Delete", question_path(question), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= paginate @questions %>
