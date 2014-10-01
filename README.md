@@ -20,7 +20,7 @@ Server:
 - [x] create a question
 - [x] edit a question
 - [x] delete a question
-- [ ] search questions
+- [x] search questions
 - [ ] sort questions
 - [ ] date filter on questions
 - [ ] basic styling

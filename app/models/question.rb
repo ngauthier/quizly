@@ -4,6 +4,15 @@ class Question < ActiveRecord::Base
   validates_presence_of :question, :answer
   validates_length_of   :distractors, minimum: 1, too_short: "can't be empty"
 
+  scope :search, ->(query) {
+    if query.present?
+      where(%{
+        to_tsvector(question || ' ' || answer || ' ' || array_to_string(distractors, ', ')) @@
+          plainto_tsquery(?)
+      }, query)
+    end
+  }
+
   def self.from_csv(io)
     CSV.parse(io.read, headers: true, col_sep: "|") do |row|
       Question.create!(row.to_h)

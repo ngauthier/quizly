@@ -109,4 +109,24 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     assert_see "Questions"
     assert_equal 0, Question.count
   end
+
+  test "search questions" do
+    Question.from_csv(fixture_file("questions-medium.csv"))
+    visit "/"
+    fill_in "query", with: "Question 200"
+    click_button "Search"
+    assert_see "Question 200"
+  end
+
+  test "pagination and search" do
+    Question.from_csv(fixture_file("questions-medium.csv"))
+    visit "/"
+    fill_in "query", with: "Question"
+    click_button "Search"
+    assert_see "Question 49"
+    refute_see "Question 65"
+    click_link "2"
+    refute_see "Question 49"
+    assert_see "Question 65"
+  end
 end

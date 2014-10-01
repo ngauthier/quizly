@@ -1,6 +1,11 @@
-<h1>Questions</h1>
+<h1><%= link_to "Questions", root_path %></h1>
 
 <%= link_to "Create a question", new_question_path %>
+
+<%= form_tag questions_path, method: :get do %>
+  <%= text_field_tag "query", params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
 
 <% @questions.each do |question| %>
   <h2><%= question.question %></h2>
