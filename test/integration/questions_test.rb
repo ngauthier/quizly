@@ -30,4 +30,23 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     refute_see "Question 15"
     assert_see "Question 55"
   end
+
+  test "create a question" do
+    visit "/"
+    click_link "Create a question"
+
+    fill_in "Question", with: "What color is the sky?"
+    fill_in "Answer",   with: "Blue"
+    fill_in "Distractors", with: "Red, Green, Purple"
+    click_button "Create Question"
+
+    assert_see "Questions"
+    assert_see "What color is the sky?"
+
+    assert_equal 1, Question.count
+    question = Question.last
+    assert_equal "What color is the sky?",   question.question
+    assert_equal "Blue",                     question.answer
+    assert_equal ["Red", "Green", "Purple"], question.distractors
+  end
 end

@@ -1,11 +1,21 @@
 require 'csv'
 
 class Question < ActiveRecord::Base
+  validates_presence_of :question, :answer
+  validates_length_of   :distractors, minimum: 1
+
   def self.from_csv(io)
     CSV.parse(io.read, headers: true, col_sep: "|") do |row|
-      attrs = row.to_h
-      attrs["distractors"] = attrs["distractors"].split(/, ?/)
-      Question.create!(attrs)
+      Question.create!(row.to_h)
+    end
+  end
+
+  def distractors=(d)
+    write_attribute "distractors", case d
+    when String
+      d.split(/, ?/)
+    else
+      d
     end
   end
 end

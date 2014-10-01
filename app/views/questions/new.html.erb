@@ -1,0 +1,18 @@
+<h1>Create a Question</h1>
+
+<%= form_for @question do |f| %>
+  <p>
+    <%= f.label :question %>
+    <%= f.text_field :question %>
+  </p>
+  <p>
+    <%= f.label :answer %>
+    <%= f.text_field :answer %>
+  </p>
+  <p>
+    <%= f.label :distractors %>
+    <%= f.text_field :distractors, value: @question.distractors.join(", ") %>
+  </p>
+
+  <p><%= f.submit %></p>
+<% end %>
