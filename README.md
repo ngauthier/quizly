@@ -28,5 +28,6 @@ Server:
 - [ ] ux: find-as-you-type
 - [ ] binary to load data from file
 - [ ] pretty errors on question form
+- [ ] high performance benchmarking
 
 ## Assumptions
