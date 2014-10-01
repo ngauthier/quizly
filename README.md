@@ -21,7 +21,7 @@ Server:
 - [x] edit a question
 - [x] delete a question
 - [x] search questions
-- [ ] sort questions
+- [x] sort questions
 - [ ] date filter on questions
 - [ ] basic styling
 - [ ] ux: dynamic distraction fields

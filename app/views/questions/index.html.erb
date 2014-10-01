@@ -10,9 +10,18 @@
 <table>
   <thead>
     <tr>
-      <th>Question</th>
-      <th>Answer</th>
-      <th>Distractors</th>
+      <th>
+        Question
+        <%= sort_links :question %>
+      </th>
+      <th>
+        Answer
+        <%= sort_links :answer %>
+      </th>
+      <th class='distractors'>
+        Distractors
+        <%= sort_links :distractors %>
+      </th>
       <th></th>
       <th></th>
     </tr>

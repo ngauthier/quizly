@@ -129,4 +129,19 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     refute_see "Question 49"
     assert_see "Question 65"
   end
+
+  test "sorting" do
+    Question.from_csv(fixture_file("questions-medium.csv"))
+    visit "/"
+    refute_see "Question 98"
+    within '.distractors' do
+      click_link "v"
+    end
+    assert_see "Question 98"
+    within '.distractors' do
+      click_link "^"
+    end
+    refute_see "Question 98"
+    assert_see "Question 100"
+  end
 end

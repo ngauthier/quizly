@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.order(:created_at).search(params[:query]).page(params[:page])
+    @questions = Question.sort(params[:sort]).search(params[:query]).page(params[:page])
   end
 
   def new
