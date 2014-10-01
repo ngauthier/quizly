@@ -16,7 +16,7 @@ Server:
 
 ## TODO
 
-- [ ] pagination
+- [x] pagination
 - [ ] create a question
 - [ ] edit a question
 - [ ] delete a question
@@ -26,5 +26,6 @@ Server:
 - [ ] basic styling
 - [ ] ux: dynamic distraction fields
 - [ ] ux: find-as-you-type
+- [ ] binary to load data from file
 
 ## Assumptions

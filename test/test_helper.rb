@@ -17,4 +17,8 @@ class ActionDispatch::IntegrationTest
   def assert_see(content, msg = "Expected to see #{content}")
     assert page.has_content?(content), msg
   end
+
+  def refute_see(content, msg = "Expected not to see #{content}")
+    assert page.has_no_content?(content), msg
+  end
 end
