@@ -18,7 +18,7 @@ Server:
 
 - [x] pagination
 - [x] create a question
-- [ ] edit a question
+- [x] edit a question
 - [ ] delete a question
 - [ ] search questions
 - [ ] sort questions

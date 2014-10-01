@@ -58,4 +58,24 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     assert_see "Answer can't be blank"
     assert_see "Distractors can't be empty"
   end
+
+  test "edit a question" do
+    Question.create!(
+      question: "What is 1+1?",
+      answer: "3",
+      distractors: ["4", "5"]
+    )
+
+    visit "/"
+    assert_see "3"
+    refute_see "2"
+
+    click_link "Edit"
+
+    fill_in "Answer", with: "2"
+    click_button "Update Question"
+
+    assert_see "2"
+    refute_see "3"
+  end
 end
