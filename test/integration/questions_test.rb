@@ -78,4 +78,20 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     assert_see "2"
     refute_see "3"
   end
+
+  test "try to edit a question in a bad way" do
+    Question.create!(
+      question: "What is 1+1?",
+      answer: "3",
+      distractors: ["4", "5"]
+    )
+
+    visit "/"
+    click_link "Edit"
+
+    fill_in "Answer", with: ""
+    click_button "Update Question"
+
+    assert_see "Answer can't be blank"
+  end
 end
