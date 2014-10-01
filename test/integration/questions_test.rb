@@ -61,22 +61,22 @@ class QuestionsTest < ActionDispatch::IntegrationTest
 
   test "edit a question" do
     Question.create!(
-      question: "What is 1+1?",
-      answer: "3",
-      distractors: ["4", "5"]
+      question: "What is the best bear?",
+      answer: "brown",
+      distractors: ["panda"]
     )
 
     visit "/"
-    assert_see "3"
-    refute_see "2"
+    assert_see "brown"
+    refute_see "black"
 
     click_link "Edit"
 
-    fill_in "Answer", with: "2"
+    fill_in "Answer", with: "black"
     click_button "Update Question"
 
-    assert_see "2"
-    refute_see "3"
+    assert_see "black"
+    refute_see "brown"
   end
 
   test "try to edit a question in a bad way" do
@@ -143,5 +143,21 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     end
     refute_see "Question 98"
     assert_see "Question 100"
+  end
+
+  test "filter by number of distractions" do
+    Question.from_csv(fixture_file("questions-small-varied.csv"))
+    visit "/"
+
+    assert_see "Short Question"
+    assert_see "Long Question"
+
+    click_link "1-3 Distractions"
+    assert_see "Short Question"
+    refute_see "Long Question"
+
+    click_link "4-10 Distractions"
+    assert_see "Long Question"
+    refute_see "Short Question"
   end
 end

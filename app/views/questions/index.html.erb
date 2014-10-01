@@ -7,6 +7,9 @@
   <%= submit_tag "Search" %>
 <% end %>
 
+<p><%= link_to "1-3 Distractions",  questions_path(merge_params(filter: :short)) %></p>
+<p><%= link_to "4-10 Distractions", questions_path(merge_params(filter: :long))  %></p>
+
 <table>
   <thead>
     <tr>

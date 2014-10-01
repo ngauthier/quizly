@@ -22,7 +22,7 @@ Server:
 - [x] delete a question
 - [x] search questions
 - [x] sort questions
-- [ ] date filter on questions
+- [x] number of distractions filter
 - [ ] basic styling
 - [ ] ux: dynamic distraction fields
 - [ ] ux: find-as-you-type

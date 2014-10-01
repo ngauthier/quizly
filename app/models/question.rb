@@ -21,6 +21,18 @@ class Question < ActiveRecord::Base
     end
   }
 
+  scope :filter, ->(filter_by) {
+    case filter_by.to_s
+    when 'short'
+      filter_short
+    when 'long'
+      filter_long
+    end
+  }
+
+  scope :filter_short, -> { where("array_length(questions.distractors, 1) < 4") }
+  scope :filter_long,  -> { where("array_length(questions.distractors, 1) > 3") }
+
   def self.from_csv(io)
     CSV.parse(io.read, headers: true, col_sep: "|") do |row|
       Question.create!(row.to_h)
