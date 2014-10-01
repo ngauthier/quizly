@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   scope :search, ->(query) {
     if query.present?
       where(%{
-        to_tsvector(question || ' ' || answer || ' ' || array_to_string(distractors, ', ')) @@
+        to_tsvector('english', question || ' ' || answer || ' ' || array_to_string_immutable(distractors, ', ')) @@
           plainto_tsquery(?)
       }, query)
     end

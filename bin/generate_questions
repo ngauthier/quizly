@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require File.expand_path('../../config/environment', __FILE__)
+require 'csv'
+count = ARGV[0].to_i
+operators = ["+", "-", "*", "/"]
+
+$stderr.puts "Generating #{count} questions"
+
+CSV($stdout, col_sep: "|") do |csv|
+  csv << ["question", "answer", "distractors"]
+  count.times do |i|
+    a = rand(100000)
+    b = rand(100000) + 1 # div by 0 lol
+    operator = operators[rand(operators.size)]
+    distractors = []
+    (rand(10)+1).times do
+      distractors << rand(100000)
+    end
+    csv << [
+      "What is #{a} #{operator} #{b}?",
+      a.send(operator, b),
+      distractors.join(", ")
+    ]
+  end
+end
+
