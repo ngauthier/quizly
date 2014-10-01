@@ -46,3 +46,9 @@ During all stages of development code coverage was 100%.
 For 1 million records, a full text query too 20 seconds unindexed. After adding the index, the query took 2ms.
 
 Total time spent on the assignment was just under 4 hours.
+
+## Demo
+
+Live on Heroku at:
+
+[http://pacific-lowlands-4405.herokuapp.com/](http://pacific-lowlands-4405.herokuapp.com/)
