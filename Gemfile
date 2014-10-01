@@ -16,5 +16,6 @@ end
 group :test do
   gem 'capybara'
   gem 'simplecov'
+  gem 'poltergeist', require: 'capybara/poltergeist'
 end
 

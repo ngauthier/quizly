@@ -8,6 +8,7 @@ module ApplicationHelper
     p = params.dup
     p.delete :action
     p.delete :controller
+    p.delete :partial
     p.merge(opts)
   end
 end

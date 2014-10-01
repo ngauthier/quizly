@@ -2,43 +2,16 @@
 
 <%= link_to "Create a question", new_question_path %>
 
-<%= form_tag questions_path, method: :get do %>
-  <%= text_field_tag "query", params[:query] %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div data-fayt>
+  <%= form_tag questions_path, method: :get, data: {"fayt-form" => true} do %>
+    <%= text_field_tag "query", params[:query], data: {:"fayt-query" => true} %>
+    <%= submit_tag "Search" %>
+  <% end %>
 
-<p><%= link_to "1-3 Distractions",  questions_path(merge_params(filter: :short)) %></p>
-<p><%= link_to "4-10 Distractions", questions_path(merge_params(filter: :long))  %></p>
+  <p><%= link_to "1-3 Distractions",  questions_path(merge_params(filter: :short)) %></p>
+  <p><%= link_to "4-10 Distractions", questions_path(merge_params(filter: :long))  %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>
-        Question
-        <%= sort_links :question %>
-      </th>
-      <th>
-        Answer
-        <%= sort_links :answer %>
-      </th>
-      <th class='distractors'>
-        Distractors
-        <%= sort_links :distractors %>
-      </th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.question %></td>
-        <td><%= question.answer %></td>
-        <td><%= question.distractors.join(", ") %></td>
-        <td><%= link_to "Edit",   edit_question_path(question) %></td>
-        <td><%= link_to "Delete", question_path(question), method: :delete %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate @questions %>
+  <div data-fayt-results>
+    <%= render partial: 'results' %>
+  </div>
+</div>

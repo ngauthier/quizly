@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>
+        Question
+        <%= sort_links :question %>
+      </th>
+      <th>
+        Answer
+        <%= sort_links :answer %>
+      </th>
+      <th class='distractors'>
+        Distractors
+        <%= sort_links :distractors %>
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.question %></td>
+        <td><%= question.answer %></td>
+        <td><%= question.distractors.join(", ") %></td>
+        <td><%= link_to "Edit",   edit_question_path(question) %></td>
+        <td><%= link_to "Delete", question_path(question), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @questions %>

@@ -160,4 +160,16 @@ class QuestionsTest < ActionDispatch::IntegrationTest
     assert_see "Long Question"
     refute_see "Short Question"
   end
+
+  test "find as you type" do
+    Question.from_csv(fixture_file("questions-medium.csv"))
+    visit "/"
+    assert_see "Question 15"
+    refute_see "Question 200"
+
+    fill_in "query", with: "Question 200"
+
+    assert_see "Question 200"
+    refute_see "Question 15"
+  end
 end

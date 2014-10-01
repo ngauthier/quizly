@@ -5,6 +5,10 @@ class QuestionsController < ApplicationController
       filter(params[:filter]).
       search(params[:query]).
       page(params[:page])
+
+    if params[:partial]
+      render partial: 'results'
+    end
   end
 
   def new
